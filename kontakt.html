@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kontakt | Pogotowie hydrauliczne Warszawa</title>
+    <meta
+      name="description"
+      content="Skontaktuj się z AquaSerwis Warszawa. Telefon, formularz, adres i mapa dojazdu."
+    />
+    <meta
+      name="keywords"
+      content="hydraulik Warszawa, pogotowie hydrauliczne Warszawa, hydraulik 24h Warszawa"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+  </head>
+  <body>
+    <div class="top-bar">
+      Dostępni 24/7 –
+      <a href="tel:+48123456789">Zadzwoń teraz: +48 123 456 789</a>
+    </div>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="index.html" class="logo">Aqua<span>Serwis</span> Warszawa</a>
+        <button class="nav-toggle" data-nav-toggle aria-expanded="false">☰</button>
+        <nav class="nav-menu" data-nav-menu>
+          <a class="nav-link" href="index.html">Start</a>
+          <a class="nav-link" href="uslugi.html">Usługi</a>
+          <a class="nav-link" href="o-nas.html">O nas</a>
+          <a class="nav-link" href="realizacje.html">Realizacje</a>
+          <a class="nav-link active" href="kontakt.html">Kontakt</a>
+          <a class="phone-pill" href="tel:+48123456789">+48 123 456 789</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container">
+        <h1 class="section-title reveal">Hydraulik Warszawa – kontakt</h1>
+
+        <div class="grid grid-2">
+          <section class="card reveal">
+            <h2>Skontaktuj się z nami</h2>
+            <p><strong>Telefon 24/7:</strong> <a href="tel:+48123456789">+48 123 456 789</a></p>
+            <p><strong>Adres:</strong> ul. Marszałkowska 100, 00-026 Warszawa</p>
+            <p><strong>Email:</strong> kontakt@aquaserwis.pl</p>
+
+            <form
+              class="form"
+              data-contact-form
+              action="https://formspree.io/f/xovdbzrg"
+              method="POST"
+              novalidate
+            >
+              <input type="text" name="name" placeholder="Imię i nazwisko" minlength="2" required />
+              <input type="email" name="email" placeholder="Adres email" required />
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Numer telefonu"
+                pattern="^\+?[0-9\s()-]{7,}$"
+                required
+              />
+              <textarea
+                name="message"
+                placeholder="Opisz awarię lub usługę"
+                minlength="10"
+                required
+              ></textarea>
+              <button class="btn btn-primary" type="submit">Wyślij zgłoszenie</button>
+              <small data-form-feedback style="color:#9fd0ff;"></small>
+            </form>
+          </section>
+
+          <section class="reveal">
+            <iframe
+              class="map"
+              title="Mapa dojazdu"
+              loading="lazy"
+              allowfullscreen
+              src="https://www.google.com/maps?q=Pa%C5%82ac+Kultury+i+Nauki+Warszawa&output=embed"
+            ></iframe>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">© <span data-year></span> AquaSerwis Warszawa</div>
+    </footer>
+
+    <a class="floating-call" href="tel:+48123456789">📞 Zadzwoń</a>
+    <a class="mobile-sticky-call" href="tel:+48123456789">📞 +48 123 456 789</a>
+
+    <script src="js/script.js"></script>
+    <script src="js/animations.js"></script>
+  </body>
+</html>
