@@ -23,13 +23,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const form = document.querySelector('[data-contact-form]');
   if (form) {
-    form.addEventListener('submit', (e) => {
+    const feedback = form.querySelector('[data-form-feedback]');
+    const endpoint = form.getAttribute('action');
+
+    const setFeedback = (message, color = '#9fd0ff') => {
+      if (!feedback) return;
+      feedback.textContent = message;
+      feedback.style.color = color;
+    };
+
+    const validate = () => {
+      const name = form.elements.name?.value.trim() || '';
+      const email = form.elements.email?.value.trim() || '';
+      const phone = form.elements.phone?.value.trim() || '';
+      const message = form.elements.message?.value.trim() || '';
+
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      const phoneOk = /^\+?[0-9\s()-]{7,}$/.test(phone);
+
+      if (name.length < 2) return 'Podaj poprawne imię i nazwisko.';
+      if (!emailOk) return 'Podaj poprawny adres email.';
+      if (!phoneOk) return 'Podaj poprawny numer telefonu.';
+      if (message.length < 10) return 'Wiadomość powinna mieć minimum 10 znaków.';
+
+      return '';
+    };
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const feedback = form.querySelector('[data-form-feedback]');
-      if (feedback) {
-        feedback.textContent = 'Dziękujemy! Oddzwonimy do Ciebie najszybciej jak to możliwe.';
+
+      const validationError = validate();
+      if (validationError) {
+        setFeedback(validationError, '#ff9a9a');
+        return;
       }
-      form.reset();
+
+      if (!endpoint) {
+        setFeedback('Brak konfiguracji formularza. Skontaktuj się telefonicznie.', '#ff9a9a');
+        return;
+      }
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (submitButton) submitButton.disabled = true;
+      setFeedback('Wysyłanie zgłoszenia...');
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json'
+          },
+          body: new FormData(form)
+        });
+
+        if (response.ok) {
+          setFeedback('Dziękujemy! Zgłoszenie zostało wysłane. Oddzwonimy najszybciej jak to możliwe.', '#7dffbf');
+          form.reset();
+        } else {
+          setFeedback('Nie udało się wysłać formularza. Spróbuj ponownie lub zadzwoń.', '#ff9a9a');
+        }
+      } catch (error) {
+        setFeedback('Błąd połączenia. Zadzwoń do nas bezpośrednio.', '#ff9a9a');
+      } finally {
+        if (submitButton) submitButton.disabled = false;
+      }
     });
   }
 });
