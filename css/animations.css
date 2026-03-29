@@ -1,0 +1,62 @@
+@keyframes gradientShift {
+  0% { transform: translate3d(-3%, -2%, 0) scale(1); opacity: 0.45; }
+  50% { transform: translate3d(3%, 2%, 0) scale(1.08); opacity: 0.75; }
+  100% { transform: translate3d(-3%, -2%, 0) scale(1); opacity: 0.45; }
+}
+
+@keyframes pulseRing {
+  0% { box-shadow: 0 0 0 0 rgba(58, 185, 255, 0.55); }
+  80% { box-shadow: 0 0 0 22px rgba(58, 185, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(58, 185, 255, 0); }
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.hero-gradient-animated::after {
+  animation: gradientShift 10s ease-in-out infinite;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.reveal.slide-in {
+  transform: translateX(-26px);
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.hover-lift {
+  transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px) scale(1.01);
+  border-color: rgba(144, 199, 255, 0.45);
+  box-shadow: 0 0 0 1px rgba(98, 184, 255, 0.2), 0 16px 42px rgba(25, 104, 197, 0.35);
+}
+
+.icon-animated {
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+.floating-call {
+  animation: pulseRing 2.8s ease-out infinite;
+}
+
+.parallax {
+  transform: translate3d(0, var(--parallax-shift, 0px), 0);
+  transition: transform 240ms linear;
+}
+
+.project:hover img {
+  transform: scale(1.08);
+}
